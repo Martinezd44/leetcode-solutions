@@ -50,5 +50,5 @@ If you spot an improvement or want to add a solution in another language, feel f
 ## 🧑‍💻 Author
 
 **David Martinez**  
-Computer Science Educator & OMSCS Student  
+Computer Science Student At MSU  
 GitHub: [Martinezd44](https://github.com/Martinezd44)
