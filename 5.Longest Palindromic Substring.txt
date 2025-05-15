@@ -1,9 +1,10 @@
+// Time complexity is O(n^3)
 class Solution {
-    public String longestPalindrome(String s) {
+    public String longestPalindrome(String s) { // this is the two pointer method that uses two for loops
         for (int len = s.length(); len>0; len--){
             for (int start = 0; start<=s.length() - len; start++){
                 if (check(start ,start + len,s)){
-                    return s.substring(start,start+len);
+                    return s.substring(start,start+len);// goes through the string and uses the Boolean check classs
                 }
             }
 
@@ -13,7 +14,7 @@ class Solution {
         return "";
     }
 
-    public boolean check (int i , int j, String s){
+    public boolean check (int i , int j, String s){ // Boolean check class will check if its palindromic
         int left = i;
         int right = j-1;
         while (left<right){

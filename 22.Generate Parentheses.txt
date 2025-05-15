@@ -1,0 +1,28 @@
+// Time complexity O(2^2n)
+
+class Solution {
+    public List<String> generateParenthesis(int n) {
+    List<String> results = new ArrayList<>(); //this is the list we use for the string and we will keep adding
+    backtrack(new StringBuilder(), 0, 0, n, results);
+    return results;
+    }
+    public void backtrack(StringBuilder cur, int open, int close, int n, List<String> results) {
+    if (open == n && close == n) { // when open and close = 0 it add nothing can't happen though
+        results.add(cur.toString());
+        return;
+    }
+
+    if (open < n) {
+        cur.append('('); // when its less than n it starts by adding one 
+        backtrack(cur, open + 1, close, n, results);// recursive case to add more parentheses
+        cur.deleteCharAt(cur.length() - 1);
+    }
+
+    if (close < open) {
+        cur.append(')'); // when its less then the open it adds a close parentheses
+        backtrack(cur, open, close + 1, n, results); //recursive case to close the parentheses
+        cur.deleteCharAt(cur.length() - 1);
+    }
+}
+
+}
