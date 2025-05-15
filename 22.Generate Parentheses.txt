@@ -14,7 +14,7 @@ class Solution {
 
     if (open < n) {
         cur.append('('); // when its less than n it starts by adding one 
-        backtrack(cur, open + 1, close, n, results);// recursive case to add more parentheses
+        backtrack(cur, open + 1, close, n, results);// recursive case to add more parentheses to the list
         cur.deleteCharAt(cur.length() - 1);
     }
 
