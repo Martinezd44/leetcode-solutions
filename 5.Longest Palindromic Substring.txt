@@ -1,4 +1,4 @@
-// Time complexity is O(n^3)
+// Time complexity is O(n^3) :D
 class Solution {
     public String longestPalindrome(String s) { // this is the two pointer method that uses two for loops
         for (int len = s.length(); len>0; len--){
