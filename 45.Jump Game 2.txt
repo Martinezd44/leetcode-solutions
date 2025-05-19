@@ -1,0 +1,17 @@
+class Solution {
+    public int jump(int[] nums) {
+        int jumps = 0; // how many jumps we are going to do
+        int currend = 0; // the current end
+        int far = 0; // the farthest it can go
+        for (int i =0; i<nums.length-1; i++){ // goes to through the array minus the end
+         far = Math.max(far, i+nums[i]); // updates the farthest we can from from position <i
+          if (i==currend){ // when hit end of the current end we can make a jump
+           jumps++;
+           currend = far;
+          }
+
+        }
+
+        return jumps; //return the jumps
+    }
+}
