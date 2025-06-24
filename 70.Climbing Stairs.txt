@@ -1,0 +1,20 @@
+class Solution {
+    public int climbStairs(int n) {
+        if (n<=1) return 1;
+        int OneStep =1; //how many one steps we take
+        int TwoStep =1; // how many two steps we can take if its greater than one we are always taking 2
+        int FullSteps =0; // final return statement 
+        for(int i=1;i<n;i++){
+           FullSteps = TwoStep + OneStep; //adds all of the steps we can take 
+           TwoStep = OneStep; // we equal it to one step because for each 2 one steps we have then we have 1 two step which is why we iterate one step after this 
+           OneStep = FullSteps; // we equal it to this because we are always taking 1 step of n for example if n=6 then we are taking 6 one steps
+
+        }
+        return FullSteps; //return full amount of steps taken after the loop
+
+
+        }
+
+       
+        
+    }
