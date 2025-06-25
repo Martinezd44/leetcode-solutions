@@ -1,0 +1,41 @@
+public class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}
+
+ class Solution {
+
+    // Recursive DFS approach
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;               // Base case: empty subtree has depth 0
+        }
+        int leftDepth  = maxDepth(root.left); //recursive for left depth
+        int rightDepth = maxDepth(root.right); //recursive for right side depth
+        return 1 + Math.max(leftDepth, rightDepth); //tests which side is greater for depth
+    }
+
+    // Iterative BFS approach (level-order traversal)
+    public int maxDepthBFS(TreeNode root) {
+        if (root == null) {
+            return 0; // if root is no value reutrn 0 to dpth
+        }
+        Queue<TreeNode> queue = new LinkedList<>(); // make a queue for the tree to add the nodes in to do a walk
+        queue.add(root);
+        int depth = 0;
+
+        while (!queue.isEmpty()) { //while its not empty it goes through the roots 
+            int levelSize = queue.size();
+            // process one level
+            for (int i = 0; i < levelSize; i++) { // loop that goes through the roots left and right until there is none left
+                TreeNode node = queue.poll();
+                if (node.left  != null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
+            }
+            depth++; // this adds to the depth after it checks all the nodes
+        }
+        return depth; //returns it for recursive cases
+    }
+}
