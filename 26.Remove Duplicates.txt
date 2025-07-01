@@ -1,0 +1,23 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+
+        // writeIndex points to where we should write the next unique element
+        int writeIndex = 1;
+
+        // readIndex scans through the array starting from the second element
+        for (int readIndex = 1; readIndex < nums.length; readIndex++) {
+            // whenever we see a new value (different from the previous),
+            // write it at writeIndex and advance writeIndex
+            if (nums[readIndex] != nums[readIndex - 1]) {
+                nums[writeIndex] = nums[readIndex];
+                writeIndex++;
+            }
+        }
+
+        // writeIndex is now the count of unique elements
+        return writeIndex;
+    }
+}
