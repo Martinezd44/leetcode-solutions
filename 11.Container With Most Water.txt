@@ -1,0 +1,23 @@
+class Solution {
+    public int maxArea(int[] height) {
+        int left = 0; //init the left and right pointer plus Area
+        int right = height.length - 1;
+        int maxArea = 0;
+
+        while (left < right) {
+            int width = right - left; //finds the width of the container
+            int h = Math.min(height[left], height[right]); //finds the least between the left and right pointer
+            maxArea = Math.max(maxArea, width * h); //then calcuates the max between the Area and a new area found within the array
+
+            // Move the pointer at the smaller height inward:
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;
+    }
+
+}
