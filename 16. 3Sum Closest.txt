@@ -1,0 +1,42 @@
+import java.util.Arrays;
+
+public class Solution {
+    
+    public int threeSumClosest(int[] nums, int target) {
+        // Edge‐case: if fewer than 3 elements, just sum what you have
+        if (nums == null || nums.length < 3) {
+            int sum = 0;
+            for (int n : nums) sum += n;
+            return sum;
+        }
+
+        Arrays.sort(nums);
+        // Initialize closestSum to the sum of the first three
+        int closestSum = nums[0] + nums[1] + nums[2];
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            int left = i + 1;
+            int right = nums.length - 1;
+            while (left < right) {
+                int currentSum = nums[i] + nums[left] + nums[right];
+
+                // If this is closer to target than our previous best, update it
+                if (Math.abs(currentSum - target) < Math.abs(closestSum - target)) {
+                    closestSum = currentSum;
+                }
+
+                // Move pointers inward to try to get closer to target
+                if (currentSum < target) {
+                    left++;
+                } else if (currentSum > target) {
+                    right--;
+                } else {
+                    // currentSum == target is the best possible
+                    return target;
+                }
+            }
+        }
+
+        return closestSum;
+    }
+}
