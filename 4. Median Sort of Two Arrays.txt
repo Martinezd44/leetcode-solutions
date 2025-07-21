@@ -1,0 +1,40 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int [] nums3 = new int [m+n];
+       int pointer1 = nums1.length-1; //im going to merge sort both of them into nums1
+       int pointer2 = nums2.length-1;
+       int mergep = (nums1.length + nums2.length) -1;
+       double median;
+       //merge sort
+      while (pointer1 >= 0 && pointer2 >= 0) {
+    if (nums1[pointer1] > nums2[pointer2]) {
+        nums3[mergep--] = nums1[pointer1--];
+    } else {
+        nums3[mergep--] = nums2[pointer2--];
+    }
+}
+
+// copy any remaining from nums1
+while (pointer1 >= 0) {
+    nums3[mergep--] = nums1[pointer1--];
+}
+
+// copy any remaining from nums2
+while (pointer2 >= 0) {
+    nums3[mergep--] = nums2[pointer2--];
+} //checks to see if array is even then add two middle numbers 
+      if (nums3.length%2==0){
+        int leftMid = nums3[(nums3.length/2)-1];
+        int rightMid =  nums3[(nums3.length/2)];
+        median = ( (double) leftMid + rightMid) /2;
+        
+      }else{ //if arary length is odd just return middle
+        median = nums3[(m+n)/2];
+      }
+      
+     return median;
+        
+    }
+}
