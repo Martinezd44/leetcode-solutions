@@ -1,0 +1,34 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length-1;
+        while (left <= right) {
+    int mid = (left + right) / 2;
+    if (nums[mid] == target) return mid;
+
+    // 1) Decide which half is sorted
+    if (nums[left] <= nums[mid]) {
+        // Left half [left..mid] is sorted
+        if (target >= nums[left] && target < nums[mid]) {
+            // target is in this sorted left half
+            right = mid - 1;
+        } else {
+            // target must be in the other half
+            left = mid + 1;
+        }
+    } 
+    else {
+        // Right half [mid..right] is sorted
+        if (target > nums[mid] && target <= nums[right]) {
+            // target is in this sorted right half
+            left = mid + 1;
+        } else {
+            // target must be in the other half
+            right = mid - 1;
+        }
+    }
+}
+
+return -1;
+    }
+}
