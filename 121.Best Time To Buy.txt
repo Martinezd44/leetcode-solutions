@@ -1,0 +1,20 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int min = Integer.MAX_VALUE;
+        int best = 0;
+
+        for (int p : prices){ //enhanced loop iterates each element in prices
+            if (p<min){//if today price lowest we seen we update min
+                min = p;
+            }
+            else if (p-min>best){ //if it beats the best / today price - lowest price
+                best = p-min;
+            }
+        }
+        return best; // if prices was empty will return 0 and it doesn't update anything either if there is no profit
+        
+
+
+        
+    }
+}
