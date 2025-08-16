@@ -1,0 +1,23 @@
+import java.util.HashMap;
+import java.util.Map;
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int left = 0;//start of current window
+        int best = 0;//best window length found
+        if (s==null||s.isEmpty()){
+            return 0;
+        }
+       Map<Character, Integer> last = new HashMap<>();
+       for (int i =0; i<s.length(); i++){// char goes to last seen index
+        char c = s.charAt(i);  //char c is the current character we are in
+       
+       if (last.containsKey(c)&&last.get(c)>=left){// if char c was seen inside the current move left past its last index
+        left = last.get(c)+1;
+       }
+       last.put(c,i); //update last seen index
+       best = Math.max(best,i-left+1); //update the best length 
+        
+    }
+    return best;
+}
+}
