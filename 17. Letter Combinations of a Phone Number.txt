@@ -1,0 +1,24 @@
+class Solution {
+    String[] KEYS = {"", "", "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"}; //string values for each number which coorelates to eachother
+
+    public List<String> letterCombinations(String digits) {
+        List<String> res = new ArrayList<>(); //result list
+        if (digits == null || digits.isEmpty()) return res; //if digits is empty we return nothing 
+        backtrack(digits, 0, new StringBuilder(), res); //recrusive trait
+        return res;
+    }
+
+    private void backtrack(String digits, int i, StringBuilder sb, List<String> res) {
+        if (i == digits.length()) { // when it backtracks it comes back from the loop with one of the strings and adds it to the list res, then it returns it.
+            res.add(sb.toString());
+            return;
+        }
+
+        String letters = KEYS[digits.charAt(i) - '0'];
+        for (int k = 0; k < letters.length(); k++) { //think of this loop like a tree where it visits each possibility with a->d,e,f and so on then returns it back.
+            sb.append(letters.charAt(k)); //add this letter 
+            backtrack(digits, i + 1, sb, res); // this recurses to check the next digit
+            sb.deleteCharAt(sb.length() - 1); //removes the last letter
+        }
+    }
+}
