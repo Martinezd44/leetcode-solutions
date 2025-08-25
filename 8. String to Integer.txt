@@ -1,0 +1,37 @@
+class Solution {
+    public int myAtoi(String s) {
+        if (s == null || s.isEmpty()) return 0; //
+
+        HashMap<Character, Integer> map = new HashMap<>(); //hash map for the characters
+        for (char c = '0'; c <= '9'; c++) map.put(c, c - '0');
+
+        int i = 0, n = s.length();
+
+        // skip spaces
+        while (i < n && s.charAt(i) == ' ') i++;
+
+        // sign
+        int sign = 1;
+        if (i < n && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
+            sign = (s.charAt(i) == '-') ? -1 : 1;
+            i++;
+        }
+
+        long res = 0;
+        while (i < n) {
+            char c = s.charAt(i);
+            Integer val = map.get(c);
+            if (val == null) break;       // stop at first non-digit
+
+            res = res * 10 + val;
+
+            long signed = res * sign;
+            if (signed > Integer.MAX_VALUE) return Integer.MAX_VALUE;
+            if (signed < Integer.MIN_VALUE) return Integer.MIN_VALUE;
+
+            i++;
+        }
+
+        return (int)(res * sign);
+    }
+}
