@@ -1,0 +1,14 @@
+class Solution(object):
+    def firstMissingPositive(self, nums):
+        n = len(nums)
+        for i in range (n): # this will rearrange the numbers
+            while 1<= nums[i] <=n and nums[nums[i]-1] !=nums[i]:
+
+                correct = nums[i]-1
+                nums[i], nums[correct] = nums[correct], nums[i] # this puts the numbers in their correct spots and gets rid of duplicates
+        for i in range(n): #loop that looks for missmatch 
+            if nums[i] != i +1:
+                return i+1
+
+        return n+1 #if all in place
+        
