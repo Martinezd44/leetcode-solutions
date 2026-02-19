@@ -1,0 +1,22 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+         // creates a hastable for the values
+        Map<Integer, Integer> valueToIndex = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+
+            // if we've already seen the complement, return its index and current index
+            if (valueToIndex.containsKey(complement)) {
+                return new int[] { valueToIndex.get(complement), i };
+            }
+
+            // otherwise record this number's index
+            valueToIndex.put(nums[i], i);
+        }
+
+          throw new IllegalArgumentException("No two sum solution");
+    }
+
+        
+    }

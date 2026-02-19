@@ -1,0 +1,23 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2; //used the middle pointer binary search method
+            
+            if (nums[mid] == target) {//checks to see if the mid is equal to target
+                return mid;
+            } 
+            else if (nums[mid] < target) { //this checks if its less then adds one we will use this to return if the array doesn't have its value
+                left = mid + 1;
+            } 
+            else {
+                right = mid - 1;
+            }
+        }
+        
+        // At this point, left is the insertion position
+        return left;
+    }
+}

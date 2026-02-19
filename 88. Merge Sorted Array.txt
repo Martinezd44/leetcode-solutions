@@ -1,0 +1,30 @@
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int pointer1=m-1; // Points to the last valid element of nums1
+        int pointer2=n-1; // Points to the last element of nums2
+        int mergep = m+n-1;  // Points to the last position in nums1 where the merged element will be placed
+        // Merge from the end while there are elements in both arrays to compare
+       while (pointer2>=0&&pointer1>=0){
+        if (nums1[pointer1]>nums2[pointer2]&&pointer1>=0){
+            nums1[mergep] = nums1[pointer1]; // Place the larger element from nums1
+            pointer1--; // Move to the previous element in nums1
+        }else {
+            nums1[mergep] = nums2[pointer2]; // Place the larger or equal element from nums2
+            pointer2--; // Move to the previous element in nums2
+
+        }
+        mergep--; // Move to the next position for the merged element
+       }
+       // Copy any remaining elements from nums2 into nums1 (if any)
+        // If nums1 has remaining elements, they are already in the correct sorted order at the front
+       while (pointer2>=0){
+        nums1[mergep] = nums2[pointer2];
+        pointer2--;
+        mergep--;
+       }
+
+       System.out.print(nums1);
+
+        }
+
+    }

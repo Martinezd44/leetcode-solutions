@@ -1,0 +1,12 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int best = nums[0]; // this looks for the best sum in the array
+        int curr = nums[0]; //this goes through the current array testing sums
+
+        for (int i=1; i<nums.length; i++){
+            curr = Math.max(nums[i], curr + nums[i]); //math function to compare which is greater this is used for negative cases
+            best = Math.max (best,curr); //this is comparing the best sum out of both just incase for negative cases this is what we return
+        }
+        return best;
+    }
+}

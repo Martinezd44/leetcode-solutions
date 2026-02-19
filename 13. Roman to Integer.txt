@@ -1,0 +1,25 @@
+class Solution {
+    public int romanToInt(String s) {
+        Map<Character,Integer> List = new HashMap<>(); //Map of all the Roman numerals coressponding to its values
+        List.put('I',1);
+        List.put('V',5);
+        List.put('X',10);
+        List.put('L',50);
+        List.put('C',100);
+        List.put('D',500);
+        List.put('M',1000);
+        int result = 0; //this is the integer we are putting the result in
+
+        for(int i=0;i<s.length();i++){
+            //current value
+            int curr = List.get(s.charAt(i));
+            if(i+1<s.length() && curr<List.get(s.charAt(i+1))){ // the next value is greater than the prevoius that means its a different number so we subtract curr and move on to the next value just incase of unique numerals
+                result -= curr;
+            }
+            else{
+                result += curr;
+            }
+        }
+        return result;
+    }
+}

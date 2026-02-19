@@ -1,0 +1,33 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n = nums.length;
+        // 1) find pivot: first index from the right where nums[i] < nums[i+1]
+        int pivot = n - 2;
+        while (pivot >= 0 && nums[pivot] >= nums[pivot + 1]) {
+            pivot--;
+        }
+
+        // 2) if pivot found, find rightmost successor > nums[pivot] and swap
+        if (pivot >= 0) {
+            int successor = n - 1;
+            while (nums[successor] <= nums[pivot]) {
+                successor--;
+            }
+            // swap pivot and successor
+            int tmp = nums[pivot];
+            nums[pivot] = nums[successor];
+            nums[successor] = tmp;
+        }
+
+        // 3) reverse the suffix starting at pivot+1
+        reverse(nums, pivot + 1, n - 1);
+    }
+
+    public void reverse(int[] a, int lo, int hi) {
+        while (lo < hi) {
+            int tmp = a[lo];
+            a[lo++] = a[hi];
+            a[hi--] = tmp;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        // 1) Handle the empty‐array case immediately:
+        if (strs == null || strs.length == 0) {
+            return "";
+        }
+
+        // 2) Initialize prefix to the first string:
+        String prefix = strs[0];
+
+        // 3) Compare with each subsequent string, shrinking as needed:
+        for (int i = 1; i < strs.length; i++) {
+            // While the current string doesn't start with prefix, chop off its last char
+            while (!strs[i].startsWith(prefix)) {
+                // shorten prefix by one character
+                prefix = prefix.substring(0, prefix.length() - 1);
+                // if we’ve shrunk to nothing, there is no common prefix
+                if (prefix.isEmpty()) {
+                    return "";
+                }
+            }
+        }
+
+        // 4) After processing all strings, prefix is the LCP
+        return prefix;
+    }
+}
